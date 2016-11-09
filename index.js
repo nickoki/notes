@@ -11,7 +11,7 @@ app.use("/assets", express.static("public"))
 
 app.get("/", function(req, res) {
   Note.find({}).then(notes => {
-    res.sendFile(__dirname + "/views/layout.html", {
+    res.sendFile(__dirname + "/layout.html", {
       notes,
     })
   })
