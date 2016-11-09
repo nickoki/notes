@@ -2,22 +2,32 @@
 
 angular
   .module("notesApp", [
-    "ui.router"
+    "ui.router",
+    "ngResource"
   ])
   .config([
     "$stateProvider",
     RouterFunction
   ])
   .controller("NoteIndexController", [
+    "NoteFactory",
     NoteIndexControllerFunction
+  ])
+  .factory("NoteFactory", [
+    "$resource",
+    NoteFactoryFunction
   ])
 
 
 
-  function NoteIndexControllerFunction() {
-    console.log("INDEX CONotrLLLER FJOIUER Ounk");
+  function NoteFactoryFunction($resource) {
+    return $resource("/api")
+  }
 
 
+
+  function NoteIndexControllerFunction(NoteFactory) {
+    this.notes = NoteFactory.query()
   }
 
 

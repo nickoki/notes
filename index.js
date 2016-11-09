@@ -10,10 +10,13 @@ app.set("port", process.env.PORT || 4000)
 app.use("/assets", express.static("public"))
 
 app.get("/", function(req, res) {
+  res.sendFile(__dirname + "/layout.html")
+})
+
+app.get("/api", function(req, res) {
+  console.log("/api");
   Note.find({}).then(notes => {
-    res.sendFile(__dirname + "/layout.html", {
-      notes,
-    })
+    res.json( notes )
   })
 })
 
