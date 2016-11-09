@@ -13,9 +13,9 @@ mongoose.Promise = global.Promise
 
 mongoose.connect("mongodb://localhost/notes")
 
-// module.exports = mongoose
+module.exports = mongoose
 
-console.log();
+
 
 // Seeding
 Note.remove({}).then( () => {
@@ -36,4 +36,4 @@ Note.remove({}).then( () => {
   )
 })
 
-process.exit()
+// process.exit()
