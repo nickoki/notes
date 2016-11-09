@@ -20,6 +20,7 @@
   "dependencies": {
     "angular-resource": "^1.5.8",
     "express": "^4.14.0",
-    "mongoose": "^4.6.6"
+    "mongoose": "^4.6.6",
+    "tinymce": "^4.4.3"
   }
 }
