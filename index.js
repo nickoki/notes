@@ -1,5 +1,4 @@
 // index.js
-
 var express = require("express")
 var mongoose = require("./db/connection")
 var Note = mongoose.model("Note")
@@ -13,12 +12,20 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/layout.html")
 })
 
-app.get("/api", function(req, res) {
+app.get("/api/notes", function(req, res) {
   console.log("/api");
   Note.find({}).then(notes => {
     res.json( notes )
   })
 })
+
+app.get("/api/notes/:title", function(req, res) {
+  var noteTitle = req.params.title
+  Note.findOne({title: noteTitle}).then(note => {
+    res.json(note)
+  })
+})
+
 
 app.listen(4000, () => {
   console.log("Running on port 4000");
