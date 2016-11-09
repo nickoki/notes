@@ -36,6 +36,9 @@ angular
 
   function NoteFactoryFunction($resource) {
     return $resource("/api/notes/:title", {}, {
+      create: {
+        method: "POST"
+      },
       update: {
         method: "POST"
       }
@@ -47,6 +50,7 @@ angular
   function NoteIndexControllerFunction(NoteFactory) {
     this.notes = NoteFactory.query()
   }
+
   function ShowNoteControllerFunction($stateParams, NoteFactory){
     this.note = NoteFactory.get({title: $stateParams.title})
     this.update = function(){
@@ -58,12 +62,24 @@ angular
       })
     }
   }
-  function NewNoteController(NoteFactory){
+
+  function NewNoteControllerFunction(NoteFactory) {
+    console.log("Note Controller");
     this.note = new NoteFactory()
-    this.create = function(){
-      this.note.$save()
+    console.log(this.note);
+    this.create = function(note) {
+      console.log(note);
+      // NoteFactory.create({
+      //   title: note.title,
+      //   content: note.content,
+      //   date: Date.now
+      // }).$promise.then( (note) => {
+      //   console.log(note);
+        // this.notes = NoteFactory.query()
+      // })
     }
   }
+
   // function EditNoteControllerFunction($stateParams, NoteFactory){
   //   this.note = NoteFactory.get({title: $stateParams.title})
   //   this.update = function(){

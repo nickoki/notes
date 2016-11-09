@@ -15,14 +15,15 @@ app.get("/", function(req, res) {
 })
 
 app.get("/api/notes", function(req, res) {
-  console.log("/api");
   Note.find({}).then(notes => {
     res.json( notes )
   })
 })
-// new note
-app.post("/api/notes/new", function(req, res) {
 
+app.post("/api/notes", function(req, res) {
+  Note.create(req.body.note).then((note) => {
+    res.redirect(`/#/notes/${note.title}`)
+  })
 })
 
 

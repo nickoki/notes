@@ -1,32 +1,8 @@
-<<<<<<< HEAD
-<div class="col-2">
-  <p><a ui-sref="newNote">New Note</a></p>
-  <div class="notes" data-ng-repeat="note in vm.notes">
-    <div>
-      <h2><a ui-sref="showNote({title: note.title})">{{note.title}}</a></h2>
-      <h5>{{note.date}}</h5>
-    </div>
+
+<p><a ui-sref="newNote">New Note</a></p>
+<div class="notes" data-ng-repeat="note in vm.notes">
+  <div>
+    <h2><a ui-sref="showNote({title: note.title})">{{note.title}}</a></h2>
+    <h5>{{note.date}}</h5>
   </div>
 </div>
-<div class="col-2 editor">
-  <div id="trumbowyg"></div>
-</div>
-
-<script>
-  $('#trumbowyg').trumbowyg({
-    btns: [
-      ['viewHTML'],
-      ['formatting'],
-      'btnGrp-semantic',
-      ['superscript', 'subscript'],
-      ['link'],
-      ['insertImage'],
-      'btnGrp-justify',
-      'btnGrp-lists',
-      ['horizontalRule'],
-      ['removeformat'],
-      ['preformatted'],
-      ['fullscreen']
-    ]
-  })
-</script>

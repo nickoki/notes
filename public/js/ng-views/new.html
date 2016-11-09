@@ -1,11 +1,12 @@
 <div>
+  <h1>NEW NOTE</h1>
   <h2>{{vm.note.title}}</h2>
 </div>
 <form method="post">
-  <input type="text" name="note[title]" placeholder="Title" value="{{vm.note.title}}"/>
-  <div id="trumbowyg" name="note[content]" placeholder="Note body">{{vm.note.content}}</div>
+  <input type="text" data-ng-model="vm.note.title" placeholder="Title" value="{{vm.note.title}}"/>
+  <div id="trumbowyg" data-ng-model="vm.note.content" placeholder="Note body">{{vm.note.content}}</div>
 
-  <button type="submit">Save Changes</button>
+  <button data-ng-click="vm.create(note)">Save Changes</button>
 </form>
 
 <script>
