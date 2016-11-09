@@ -18,12 +18,25 @@ app.get("/api/notes", function(req, res) {
     res.json( notes )
   })
 })
+// new note
+app.post("/api/notes/new", function(req, res) {
+
+})
+
+
 
 app.get("/api/notes/:title", function(req, res) {
   var noteTitle = req.params.title
   Note.findOne({title: noteTitle}).then(note => {
     res.json(note)
   })
+})
+
+
+// update
+app.post("/api/notes/edit/:title", function(req, res){
+  var noteTitle = req.params.title
+  Note.findOneAndUpdate({title: noteTitle}, req.body.note, {new: true})
 })
 
 

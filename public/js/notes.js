@@ -18,10 +18,14 @@ angular
     "NoteFactory",
     ShowNoteControllerFunction
   ])
-  .controller("EditNoteController", [
-    "$stateParams",
+  // .controller("EditNoteController", [
+  //   "$stateParams",
+  //   "NoteFactory",
+  //   EditNoteControllerFunction
+  // ])
+  .controller("NewNoteController", [
     "NoteFactory",
-    EditNoteControllerFunction
+    NewNoteControllerFunction
   ])
   .factory("NoteFactory", [
     "$resource",
@@ -31,7 +35,11 @@ angular
 
 
   function NoteFactoryFunction($resource) {
-    return $resource("/api/notes/:title")
+    return $resource("/api/notes/:title", {}, {
+      update: {
+        method: "POST"
+      }
+    })
   }
 
 
@@ -41,13 +49,27 @@ angular
   }
   function ShowNoteControllerFunction($stateParams, NoteFactory){
     this.note = NoteFactory.get({title: $stateParams.title})
-  }
-  function EditNoteControllerFunction($stateParams, NoteFactory){
-    this.not = NoteFactory.get({title: $stateParams.title})
     this.update = function(){
-      this.grumble.$update({title: $stateParams.title})
+      NoteFactory.update({
+        title: this.note.title,
+        content: this.note.content
+      }).$promise.then(() => {
+        this.note = NoteFactory.get({title: $stateParams.title})
+      })
     }
   }
+  function NewNoteController(NoteFactory){
+    this.note = new NoteFactory()
+    this.create = function(){
+      this.note.$save()
+    }
+  }
+  // function EditNoteControllerFunction($stateParams, NoteFactory){
+  //   this.note = NoteFactory.get({title: $stateParams.title})
+  //   this.update = function(){
+  //     this.grumble.$update({title: $stateParams.title})
+  //   }
+  // }
 
   function RouterFunction($stateParams) {
     $stateParams
@@ -63,10 +85,16 @@ angular
       controller: "ShowNoteController",
       controllerAs: "vm"
     })
-    .state("editNote", {
-      url: "/edit/:title",
-      templateUrl: "assets/js/ng-views/edit.html",
-      controller: "EditNoteController",
+    .state("newNote", {
+      url: "/new",
+      templateUrl: "assets/js/ng-views/new.html",
+      controller: "NewNoteController",
       controllerAs: "vm"
     })
+    // .state("editNote", {
+    //   url: "/edit/:title",
+    //   templateUrl: "assets/js/ng-views/edit.html",
+    //   controller: "EditNoteController",
+    //   controllerAs: "vm"
+    // })
   }
