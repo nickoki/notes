@@ -1,2 +1,8 @@
 <h1>Index.html ng views yo</h1>
-<p>{{vm.notes}}</p>
+<div class="notes" data-ng-repeat="note in vm.notes">
+  <div>
+    <h2>{{note.title}}</h2>
+    <h5>{{note.date}}</h5>
+    <p>{{note.content}}</p>
+  </div>
+</div>
