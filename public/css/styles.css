@@ -1,3 +1,33 @@
 body {
   font-family: "Helvetica", sans-serif;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.col-2 {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.editor {
+  order: -1;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .col-2 {
+    width: 50%;
+  }
+
+  .editor {
+    order: 1;
+  }
+}
