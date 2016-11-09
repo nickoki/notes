@@ -2,12 +2,14 @@
 
 var express = require("express")
 var mongoose = require("./db/connection")
+
 var Note = mongoose.model("Note")
 
 var app = express()
 
 app.set("port", process.env.PORT || 4000)
 app.use("/assets", express.static("public"))
+app.use("/scripts", express.static("node_modules"))
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/layout.html")

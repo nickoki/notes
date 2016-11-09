@@ -7,11 +7,33 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="http://code.angularjs.org/1.0.7/angular-resource.js"></script>
+    <script type="text/javascript" src="scripts/trumbowyg/dist/trumbowyg.min.js"></script>
+    <script type="text/javascript" src="scripts/trumbowyg/dist/plugins/preformatted/trumbowyg.preformatted.min.js"></script>
     <script type="text/javascript" src="assets/js/notes.js"></script>
+    <link rel="stylesheet" href="scripts/trumbowyg/dist/ui/trumbowyg.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
   </head>
   <body>
+    <div id="trumbowyg"></div>
     <h1>Hello</h1>
     <div data-ui-view></div>
+    <script>
+      $('#trumbowyg').trumbowyg({
+        btns: [
+          ['viewHTML'],
+          ['formatting'],
+          'btnGrp-semantic',
+          ['superscript', 'subscript'],
+          ['link'],
+          ['insertImage'],
+          'btnGrp-justify',
+          'btnGrp-lists',
+          ['horizontalRule'],
+          ['removeformat'],
+          ['preformatted'],
+          ['fullscreen']
+        ]
+      })
+    </script>
   </body>
 </html>
