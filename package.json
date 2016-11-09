@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/nickoki/notes/issues"
   },
-  "homepage": "https://github.com/nickoki/notes#readme"
+  "homepage": "https://github.com/nickoki/notes#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
